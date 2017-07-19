@@ -13,7 +13,6 @@ public class Node<T> implements Comparable<Node<T>>{
 	
 	public Node(T vertex){
 		this.vertex = vertex;
-		new HashSet<>();
 		this.edges = new ArrayList<>();
 	}
 	
@@ -63,6 +62,20 @@ public class Node<T> implements Comparable<Node<T>>{
                 .filter(edge -> edge.isBetween(this, node))
                 .findFirst();
     }
+	
+	@Override
+	public String toString(){
+		return "Node : " + vertex;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o == null || this.getClass() != o.getClass()) return false;
+		if(this == o) return true;
+		 
+		return vertex.equals(((Node<T>) o).vertex);
+		
+	}
 
 	@Override
 	public int compareTo(Node<T> o) {

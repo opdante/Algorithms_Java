@@ -8,6 +8,9 @@ public class Edge<T> {
 	private int weight;
 
 	public Edge(Node<T> from, Node<T> to, int weight) {
+		if (from == null || to == null){
+			throw new IllegalArgumentException("null");
+		}
 		this.from = from;
 		this.to = to;
 		this.setWeight(weight);
