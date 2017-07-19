@@ -15,6 +15,7 @@ import data_structures.graph.WeightedGraph;
  * Given a graph and a source vertex src in graph, the Bellman Ford shortest 
  * path algorithm finds the shortest paths from src to all vertices in the 
  * given graph. The graph may contain negative weight edges.
+ * See : http://www.geeksforgeeks.org/dynamic-programming-set-23-bellman-ford-algorithm/
  */
 public class BellmanFord<T> {
 	 public static int INF = Integer.MAX_VALUE;
