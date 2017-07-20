@@ -147,9 +147,21 @@ public class BinarySearchTree<E extends Comparable<E>>
 	}
 
 	@Override
-	public void preorder() {
-		// TODO Auto-generated method stub
+	public List<E> preorder() {
+		List<E> traversal = new ArrayList<>();
+		if(root == null) return traversal;
+		TreeNode<E> curr = root;
+		Stack<TreeNode<E>> stack = new Stack<>();
 		
+		stack.push(curr);
+		
+		while(!stack.empty()){
+			TreeNode<E> node = stack.pop();
+			traversal.add(node.value);
+			if(node.right != null) stack.push(node.right);
+			if(node.left != null) stack.push(node.left);	
+		}
+		return traversal;
 	}
 
 	// get number of nodes in tree

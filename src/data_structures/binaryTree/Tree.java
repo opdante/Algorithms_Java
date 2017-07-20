@@ -19,7 +19,7 @@ public interface Tree<E extends Comparable<E>> {
 	public List<E> postorder();
 
     // Preorder traversal from the root
-	public void preorder();
+	public List<E> preorder();
 
     // Get the number of nodes in the tree
     public int getSize();
