@@ -57,10 +57,27 @@ public class BinarySearchTree<E extends Comparable<E>>
 		
 	}
 
-	@Override
+	// Delete an element from the binary tree
 	public boolean delete(E data) {
-		// TODO Auto-generated method stub
-		return false;
+		if(root == null) return false;
+		TreeNode<E> curr = root;
+		root = deleteNode(curr, data);
+		size--;
+		return true;
+	}
+	
+	private TreeNode<E> deleteNode(TreeNode<E> root, E data){
+		if(root == null) return root;
+		if(root.value.compareTo(data) > 0) root.left = deleteNode(root.left, data);
+		else if(root.value.compareTo(data) < 0) root.right = deleteNode(root.right, data);
+		else{
+			if(root.left == null) return root.right;
+			else if(root.right == null) return root.left;
+			// for a node with with two children, replace the min value of the right subtree
+			root.value = this.getMin(root.right);
+			root.right = deleteNode(root.right, root.value);
+		}
+		return root;
 	}
 
 	@Override
@@ -81,9 +98,18 @@ public class BinarySearchTree<E extends Comparable<E>>
 		
 	}
 
-	@Override
+	// get number of nodes in tree
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
+	
+	private E getMin(TreeNode<E> root) {
+        E min = root.value;
+        while (root.left != null) {
+            root = root.left;
+            min = root.value;
+        }
+        return min;
+    }
+	
 }
