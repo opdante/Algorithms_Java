@@ -1,5 +1,9 @@
 package data_structures.binaryTree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class BinarySearchTree<E extends Comparable<E>> 
 		extends AbstractTree<E>{
 	protected TreeNode<E> root;
@@ -81,11 +85,29 @@ public class BinarySearchTree<E extends Comparable<E>>
 	}
 
 	@Override
-	public void inorder() {
-		// TODO Auto-generated method stub
+	public List<E> inorder() {
+		List<E> inOrderList = new ArrayList<E>();
+		TreeNode curr = root;
+		Stack<TreeNode<E>> stack = new Stack<TreeNode<E>>();
+		traverseLeft(curr, stack);
 		
+		while(!stack.empty()){
+			TreeNode<E> node = stack.pop();
+			inOrderList.add(node.value);
+			if(node.right != null){
+				traverseLeft(node.right, stack);
+			}
+		}
+		return inOrderList;
 	}
-
+    
+	private void traverseLeft(TreeNode<E> root, Stack<TreeNode<E>> stack){
+        while(root != null){
+            stack.push(root);
+            root = root.left;
+        }
+    }
+	
 	@Override
 	public void postorder() {
 		// TODO Auto-generated method stub
@@ -105,7 +127,7 @@ public class BinarySearchTree<E extends Comparable<E>>
 	
 	private E getMin(TreeNode<E> root) {
         E min = root.value;
-        while (root.left != null) {
+        while (root != null) {
             root = root.left;
             min = root.value;
         }
