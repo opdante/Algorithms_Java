@@ -13,6 +13,12 @@ public class BinarySearchTree<E extends Comparable<E>>
 		this.root = null;
 	}
 	
+	public void insert(List<E> elements){
+		for(E elem: elements){
+			this.insert(elem);
+		}
+	}
+	
 	public void insert(E data){
 		TreeNode<E> new_node = new TreeNode<>(data);
 		if(root == null){
@@ -169,7 +175,7 @@ public class BinarySearchTree<E extends Comparable<E>>
 		return size;
 	}
 	
-	private E getMin(TreeNode<E> root) {
+	public E getMin(TreeNode<E> root) {
         E min = root.value;
         while (root != null) {
             root = root.left;
@@ -177,5 +183,48 @@ public class BinarySearchTree<E extends Comparable<E>>
         }
         return min;
     }
+	
+	public E getMax(TreeNode<E> node){
+		E max = node.value;
+		while(node != null){
+			node = node.right;
+			max = node.value;
+		}
+		return max;
+	}
+	
+	public int height(){
+		TreeNode<E> curr = root;
+		return heightUtil(curr);
+	}
+	
+	public int heightUtil(TreeNode<E> node){
+		return (node == null) ? 0 : 1 + Math.max(heightUtil(node.left), 
+				heightUtil(node.right));
+		
+	}
+	
+	public List<List<E>> findLeaves(){
+		List<List<E>> leaves = new ArrayList<>();
+		TreeNode<E> curr = root;
+		findLeaves(leaves, curr);
+		return leaves;
+	}
+	
+	private int findLeaves(List<List<E>> list, TreeNode<E> node){
+		if(node == null) return -1;
+		
+		int left = findLeaves(list, node.left);
+		int right = findLeaves(list, node.right);
+		int curr = 1 + Math.max(left, right);
+		
+		if(list.size() <= curr){
+			list.add(new ArrayList<E>());
+		}
+		list.get(curr).add(node.value);
+		
+		return curr;
+	}
+	
 	
 }
