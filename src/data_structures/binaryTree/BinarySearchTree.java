@@ -87,7 +87,7 @@ public class BinarySearchTree<E extends Comparable<E>>
 	@Override
 	public List<E> inorder() {
 		List<E> inOrderList = new ArrayList<E>();
-		TreeNode curr = root;
+		TreeNode<E> curr = root;
 		Stack<TreeNode<E>> stack = new Stack<TreeNode<E>>();
 		traverseLeft(curr, stack);
 		
@@ -109,9 +109,41 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
 	
 	@Override
-	public void postorder() {
-		// TODO Auto-generated method stub
+	public List<E> postorder() {
+		List<E> traversal = new ArrayList<>();
+
+		if(root == null) return traversal;
 		
+		TreeNode<E> curr = root;
+		
+		Stack<TreeNode<E>> stack = new Stack<>();
+		stack.push(curr);
+		TreeNode<E> prev = null;
+		while(!stack.isEmpty()){
+			TreeNode<E> node = stack.peek();
+
+			if(prev == null || prev.left == node || prev.right == node){
+				if(node.left != null) stack.push(node.left);
+				else if(node.right != null) stack.push(node.right);
+				else{
+					stack.pop();
+					traversal.add(node.value);
+				}
+			} else if(node.left == prev){
+				if(node.right != null) stack.push(node.right);
+				else{
+					stack.pop();
+					traversal.add(node.value);
+				}
+			} else if(node.right == prev){
+				stack.pop();
+				traversal.add(node.value);
+			}
+			prev = node;
+		}
+
+		return traversal;
+
 	}
 
 	@Override
