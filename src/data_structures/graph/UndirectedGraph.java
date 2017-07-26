@@ -1,7 +1,9 @@
 package data_structures.graph;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class UndirectedGraph<T> implements Graph<T> {
 	private Map<T, Node<T>> adjacencyList;
@@ -91,6 +93,11 @@ public class UndirectedGraph<T> implements Graph<T> {
      */
 	public int vertexCount() {
 		return adjacencyList.keySet().size();
+	}
+
+	@Override
+	public Set<Node<T>> getVertices() {
+		return new HashSet<Node<T>>(adjacencyList.values());
 	}
 	
 }

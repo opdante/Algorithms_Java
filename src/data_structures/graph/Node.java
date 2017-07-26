@@ -65,7 +65,7 @@ public class Node<T> implements Comparable<Node<T>>{
 	
 	@Override
 	public String toString(){
-		return "Node : " + vertex;
+		return "Vertex : " + vertex;
 	}
 	
 	@Override

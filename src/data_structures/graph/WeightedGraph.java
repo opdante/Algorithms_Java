@@ -95,7 +95,7 @@ public class WeightedGraph<T> {
 	}
 	
 	public Set<Node<T>> getVertices() {
-        return new HashSet(adjacencyList.keySet());
+        return new HashSet<Node<T>>(adjacencyList.values());
     }
 	
 	public List<Edge<T>> getEdges(){

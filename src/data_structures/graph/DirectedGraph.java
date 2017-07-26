@@ -1,7 +1,9 @@
 package data_structures.graph;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class DirectedGraph<T> implements Graph<T> {
 private Map<T, Node<T>> adjacencyList;
@@ -83,5 +85,10 @@ private Map<T, Node<T>> adjacencyList;
 	@Override
 	public Node<T> getNode(T value) {
 		return adjacencyList.get(value);
+	}
+
+	@Override
+	public Set<Node<T>> getVertices() {
+		return new HashSet<Node<T>>(adjacencyList.values());
 	}
 }

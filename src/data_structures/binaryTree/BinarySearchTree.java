@@ -7,6 +7,11 @@ import java.util.Stack;
 public class BinarySearchTree<E extends Comparable<E>> 
 		extends AbstractTree<E>{
 	protected TreeNode<E> root;
+	
+	public TreeNode<E> getRoot() {
+		return root;
+	}
+
 	protected int size = 0;
 	
 	public BinarySearchTree(){
@@ -225,6 +230,4 @@ public class BinarySearchTree<E extends Comparable<E>>
 		
 		return curr;
 	}
-	
-	
 }

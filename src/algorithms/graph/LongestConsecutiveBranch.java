@@ -49,9 +49,8 @@ public class LongestConsecutiveBranch {
 		LongestConsecutiveBranch lcb = new LongestConsecutiveBranch(elems);
 		System.out.println(lcb.consecutive());
 		
-
+		List<Integer> elems2 = asList(40, 41, 42, 44, 1, 2, 3, 4);
+		LongestConsecutiveBranch lcb2 = new LongestConsecutiveBranch(elems2);
+		System.out.println(lcb2.consecutive());
 	}
-	
-	
-	
 }
